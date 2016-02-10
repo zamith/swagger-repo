@@ -1,0 +1,35 @@
+{
+  "name": "swagger-repo",
+  "version": "0.0.1",
+  "description": "CLI tool to help you manage your OpenAPI(fka Swagger) repo.",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IvanGoncharov/swagger-repo.git"
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "Restful",
+    "OpenAPI",
+    "OpenAPI Specification",
+    "Swagger"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IvanGoncharov/swagger-repo/issues"
+  },
+  "homepage": "https://github.com/IvanGoncharov/swagger-repo",
+  "bin": {
+    "swagger-repo": "./bin/swagger-repo.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "redoc": "^0.5.2",
+    "swagger-ui": "^2.1.4",
+    "sway": "^0.6.0"
+  },
+  "devDependencies": {}
+}
