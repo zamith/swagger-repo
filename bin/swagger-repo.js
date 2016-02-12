@@ -14,8 +14,7 @@ program.command('validate')
 program.command('bundle')
   .description('Bundles a multi-file Swagger spec')
   .option('-o, --outfile <filename>', 'The output file')
-  .option('-j, --json', 'Output JSON(default)')
-  .option('-y, --yaml', 'Output YAML')
+  .option('-y, --yaml', 'Output YAML(Default is JSON)')
   .action(function(options) {
     var swagger = api.bundle();
     var str = api.stringify(swagger, options);
