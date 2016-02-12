@@ -3,6 +3,7 @@
 
 var fs = require('fs');
 
+var _ = require('lodash');
 var program = require('commander');
 var api = require('../');
 
@@ -27,6 +28,31 @@ program.command('bundle')
       // Write the bundled spec to stdout
       console.log(str);
     }
+  });
+
+program.command('validate')
+  .description('Validate Swagger file')
+  .action(function(filename, options) {
+    var swagger = api.bundle();
+    api.validate(swagger, function (error, result) {
+      var isErrors = !_.isEmpty(validation.errors);
+      var isWarnings = !_.isEmpty(validation.warnings);
+
+      if (!isErrors && !isWarnings)
+        return;
+
+      if (isErrors) {
+        console.error('Validation errors:\n' +
+            JSON.stringify(validation.errors, null, 2));
+      }
+
+      if (isWarnings) {
+        console.error('Validation warnings:\n' +
+            JSON.stringify(validation.warnings, null, 2));
+      }
+
+      process.exitCode = 255;
+    });
   });
 
 program.command('serve')
