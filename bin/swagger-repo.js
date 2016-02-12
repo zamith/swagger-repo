@@ -35,8 +35,8 @@ program.command('validate')
   .action(function(filename, options) {
     var swagger = api.bundle();
     api.validate(swagger, function (error, result) {
-      var isErrors = !_.isEmpty(validation.errors);
-      var isWarnings = !_.isEmpty(validation.warnings);
+      var isErrors = !_.isEmpty(result.errors);
+      var isWarnings = !_.isEmpty(result.warnings);
 
       if (!isErrors && !isWarnings)
         return;
