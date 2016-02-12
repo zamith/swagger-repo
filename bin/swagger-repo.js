@@ -38,20 +38,18 @@ program.command('validate')
       var isErrors = !_.isEmpty(result.errors);
       var isWarnings = !_.isEmpty(result.warnings);
 
-      if (!isErrors && !isWarnings)
-        return;
-
       if (isErrors) {
         console.error('Validation errors:\n' +
-            JSON.stringify(validation.errors, null, 2));
+            JSON.stringify(result.errors, null, 2));
+        process.exitCode = 255;
       }
 
       if (isWarnings) {
+        //FIXME: 'discrimanator' doesn't handle properly by sway so ignore warnings
         console.error('Validation warnings:\n' +
-            JSON.stringify(validation.warnings, null, 2));
+            JSON.stringify(result.warnings, null, 2));
       }
 
-      process.exitCode = 255;
     });
   });
 
