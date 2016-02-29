@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IvanGoncharov/swagger-repo.git"
+    "url": "https://github.com/Rebilly/swagger-repo.git"
   },
   "keywords": [
     "API",
@@ -17,9 +17,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IvanGoncharov/swagger-repo/issues"
+    "url": "https://github.com/Rebilly/swagger-repo/issues"
   },
-  "homepage": "https://github.com/IvanGoncharov/swagger-repo",
+  "homepage": "https://github.com/Rebilly/swagger-repo",
   "bin": {
     "swagger-repo": "./bin/swagger-repo.js"
   },
