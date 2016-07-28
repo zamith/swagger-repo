@@ -7,11 +7,6 @@ var _ = require('lodash');
 var program = require('commander');
 var api = require('../');
 
-program.command('validate')
-  .description('Validates a Swagger spec')
-  .action(function (options) {
-  });
-
 program.command('bundle')
   .description('Bundles a multi-file Swagger spec')
   .option('-o, --outfile <filename>', 'The output file')
