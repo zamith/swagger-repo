@@ -25,6 +25,13 @@ program.command('bundle')
     }
   });
 
+program.command('sync-with-swagger')
+  .description('Sync single-file Swagger spec with bundle')
+  .arguments('<swagger>')
+  .action(function(swagger) {
+    api.syncWithSwagger(fs.readFileSync(swagger, 'utf-8'));
+  });
+
 program.command('validate')
   .description('Validate Swagger file')
   .action(function(filename, options) {
