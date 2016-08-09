@@ -13,7 +13,7 @@
     }
   },
   "useBackendForStorage": true,
-  "backendEndpoint": "/swagger-editor-backend/swagger.yaml",
+  "backendEndpoint": "./backend_swagger.yaml",
   "backendHelathCheckTimeout": 5000,
   "useYamlBackend": true,
   "headerBranding": false,
