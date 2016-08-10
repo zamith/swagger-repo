@@ -34,8 +34,6 @@
     "jsonpath": "^0.2.2",
     "lodash": "^4.5.0",
     "mkdirp": "^0.5.1",
-    "redoc": "^0.5.2",
-    "serve-static": "^1.10.2",
     "swagger-editor": "^2.10.3",
     "swagger-ui": "^2.1.4",
     "sway": "^0.6.0"

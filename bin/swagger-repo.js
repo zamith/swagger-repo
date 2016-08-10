@@ -5,6 +5,9 @@ var fs = require('fs');
 
 var _ = require('lodash');
 var program = require('commander');
+var express = require('express');
+var cors = require('cors');
+
 var api = require('../');
 
 program.command('bundle')
@@ -59,9 +62,22 @@ program.command('serve')
   .description('Serves a Swagger and some tools via the built-in HTTP server')
   .option('-p, --port <port>', 'The server port number')
   .action(function(filename, options) {
-    api.serve(function (cb) {
-      cb(null, api.bundle());
+    var app = express();
+    app.use(cors());
+
+    app.use('/', api.swaggerFileMiddleware());
+    app.use('/swagger-ui', api.swaggerUiMiddleware());
+    app.use('/swagger-editor', api.swaggerEditorMiddleware());
+
+    // Error handler
+    app.use(function(err, req, res, next) {
+        console.error(err.stack);
+        res.status(500).json({'error' : err.message});
+        next(err);
     });
+
+    // Run server
+    app.listen(3000);
   });
 
 program
