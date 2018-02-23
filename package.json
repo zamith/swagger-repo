@@ -19,6 +19,10 @@
   "bugs": {
     "url": "https://github.com/Rebilly/swagger-repo/issues"
   },
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint lib/index.js bin/swagger-repo.js --fix"
+  },
   "homepage": "https://github.com/Rebilly/swagger-repo",
   "bin": {
     "swagger-repo": "./bin/swagger-repo.js"
@@ -38,5 +42,13 @@
     "swagger-editor": "^2.10.3",
     "swagger-ui": "^2.1.4",
     "sway": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
