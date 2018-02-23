@@ -27,6 +27,9 @@
   "bin": {
     "swagger-repo": "./bin/swagger-repo.js"
   },
+  "engines": {
+    "node": ">=6.4.0"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "commander": "^2.9.0",
