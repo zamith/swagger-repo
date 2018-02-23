@@ -12,10 +12,11 @@ var api = require('../')
 
 program.command('bundle')
   .description('Bundles a multi-file Swagger spec')
+  .option('-b, --basedir <relpath>', 'The output file')
   .option('-o, --outfile <filename>', 'The output file')
   .option('-y, --yaml', 'Output YAML(Default is JSON)')
   .action(function (options) {
-    var swagger = api.bundle()
+    var swagger = api.bundle(options)
     var str = api.stringify(swagger, options)
 
     if (options.outfile) {
@@ -29,15 +30,17 @@ program.command('bundle')
 
 program.command('sync-with-swagger')
   .description('Sync single-file Swagger spec with bundle')
+  .option('-b, --basedir <relpath>', 'The output file')
   .arguments('<swagger>')
-  .action(function (swagger) {
-    api.syncWithSwagger(fs.readFileSync(swagger, 'utf-8'))
+  .action(function (swagger, options) {
+    api.syncWithSwagger(fs.readFileSync(swagger, 'utf-8'), options)
   })
 
 program.command('validate')
   .description('Validate Swagger file')
-  .action(function (filename, options) {
-    var swagger = api.bundle()
+  .option('-b, --basedir <relpath>', 'The output file')
+  .action(function (options) {
+    var swagger = api.bundle(options)
     api.validate(swagger, function (error, result) {
       var isErrors = !_.isEmpty(result.errors)
       var isWarnings = !_.isEmpty(result.warnings)
@@ -65,13 +68,14 @@ program.command('validate')
 program.command('serve')
   .description('Serves a Swagger and some tools via the built-in HTTP server')
   .option('-p, --port <port>', 'The server port number')
-  .action(function (filename, options) {
+  .option('-b, --basedir <relpath>', 'The output file')
+  .action(function (options) {
     var app = express()
     app.use(cors())
 
-    app.use('/', api.swaggerFileMiddleware())
-    app.use('/swagger-ui', api.swaggerUiMiddleware())
-    app.use('/swagger-editor', api.swaggerEditorMiddleware())
+    app.use('/', api.swaggerFileMiddleware(options))
+    app.use('/swagger-ui', api.swaggerUiMiddleware(options))
+    app.use('/swagger-editor', api.swaggerEditorMiddleware(options))
 
     // Error handler
     app.use(function (err, req, res, next) {
@@ -81,7 +85,7 @@ program.command('serve')
     })
 
     // Run server
-    app.listen(3000)
+    app.listen(options.port)
   })
 
 program
